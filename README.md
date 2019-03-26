@@ -2,7 +2,7 @@
 Software innovation project
 
 
-#### number of project 
+#### member of project 
 | ID | Name |
 | --- | --- |
 | 118037910027  |  柯学翰 | 
