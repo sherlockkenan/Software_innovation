@@ -2,442 +2,571 @@
 <html>
     
     <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, user-scalable=no, minimal-ui'>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
         <title>Ce Gao</title>
-        <style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+        <style type="text/css">
+            @import url(
+            	https://fonts.googleapis.com/css?family=Lato:400,700
+            );
             body {
-              background: #EEEEEE;
-              font: 12px "Times New Roman", Times, sans-serif;
-              line-height: 1.4;
-              margin: 40px 0;
-            }
-            em {
-              color: #999;
-            }
-            p {
-              line-height: 1.4;
-            }
-            ul {
-              margin-bottom: 0;
-            }
-            li {
-              margin-bottom: 2px;
+            	background: #fff;
+            	font-family: Lato, sans-serif;
+            	margin: 0 0 80px;
             }
             a {
-              text-decoration: none;
+            	color: #2ecc71;
+            }
+            a:focus,
+            a:hover {
+            	color: #f1c40f;
+            	text-decoration: none;
+            }
+            p {
+            	line-height: 1.5;
+            	margin: 0;
+            }
+            p + p {
+            	margin-top: 10px;
+            }
+            h1,
+            h2,
+            h3,
+            h4 {
+            	margin-top: 0
+            }
+            section {
+            	margin-top: 30px;
+            }
+            li {
+            	line-height: 1.8;
+            	list-style: none;
+            }
+            li:before {
+            	content: "\f052";
+            	float: left;
+            	font: 13px Octicons;
+            	margin-top: 6px;
+            	margin-left: -20px;
+            	opacity: .1;
+            	position: absolute;
+            }
+            blockquote {
+            	border-left: 5px solid #e7e9ec;
+            	font-size: 14px;
+            }
+            em {
+            	color: #95a5a6;
+            	font-weight: normal;
+            	font-style: normal;
+            }
+            h4 span:first-child {
+            	color: #000;
+            	font-weight: bold;
+            }
+            .container {
+            	max-width: 750px;
+            	padding: 0 30px;
+            }
+            .col-sm-6 {
+            	margin-bottom: 10px;
+            }
+            .col-sm-12 h4 {
+            	margin-top: 12px; 
+            }
+            .col-sm-12 + .col-sm-12 {
+            	margin-top: 30px;
+            }
+            #header {
+            	background: #f4f6f6;
+            	padding: 50px 0;
+            	margin-bottom: 30px;
+            }
+            #header h2 {
+            	color: #95a5a6;
+            	font-size: 24px;
+            }
+            #content h3 {
+            	color: #f1c40f;
+            	font-size: 26px;
+            	margin-top: -4px;
+            }
+            #content aside {
+            	text-align: right;
+            	padding-right: 30px;
+            }
+            #profiles .network {
+            	text-transform: capitalize;
+            }
+            #work .position,
+            #volunteer .position {
+            	font-weight: bold;
+            	margin-bottom: 8px;
+            }
+            #education .area {
+            	font-weight: bold;
+            }
+            #education .area:before {
+            	content: "\f0d7";
+            	font: 16px Octicons;
+            	margin-right: 6px;
+            }
+            #education .studyType {
+            	margin-left: 25px;
+            }
+            #awards .summary,
+            #publications .summary {
+            	margin-top: 8px;
+            }
+            #publications .website a:before {
+            	content: attr(href);
             }
             
-            #resume {
-              margin: 0 auto;
-              max-width: 600px;
-              padding: 80px 100px;
-              background: #fff;
-              border: 1px solid #ccc;
-              box-shadow: 2px 2px 4px #aaa;
-              -webkit-box-shadow: 2px 2px 4px #aaa;
+            @media (min-width: 480px) {
+            	.strike-through {
+            		border-top: 1px solid #f4f6f6;
+            		height: 20px;
+            		margin-top: 12px;
+            		margin-bottom: -2px;
+            		position: relative;
+            	}
+            	.strike-through span,
+            	.strike-through a {
+            		background: #fff;
+            		position: absolute;
+            	}
+            	.strike-through span:first-child {
+            		padding-right: 20px;
+            		margin-top: -12px;
+            	}
+            	.strike-through span + span {
+            		font-size: 14px;
+            		margin-top: -10px;
+            		padding-left: 20px;
+            		right: 0;
+            	}
             }
-            
-            .coursesList {
-              width: 28%;
-              vertical-align: top;
-              display: inline-block;
+            @media (max-width: 768px) {
+            	.col-sm-6:last-child {
+            		margin-bottom: 0px;
+            	}
+            	#content aside {
+            		margin-bottom: 20px;
+            		padding-right: 0;
+            		text-align: left;
+            	}
+            	#publications .website a:before {
+            		content: "View publication";
+            	}
             }
-            
-            .largeFont {
-              font-size: 20px;
-            }
-            
-            .smallFont {
-              font-size: 12px;
-            }
-            
-            .sectionBlock {
-              display: flex;
-              width: 100%;
-            }
-            
-            .sectionName {
-              width: 18%;
-              vertical-align: top;
-              display: inline-block;
-            }
-            
-            .sectionContent {
-              width: 80%;
-              vertical-align: top;
-              display: inline-block;
-            }
-            
-            .sectionContent ul {
-              padding-left: 20px;
-              margin-top: 6px;
-              list-style-type: circle;
-            }
-            
-            .sectionContent .title {
-              font-weight: bold;
-            }
-            
-            .sectionContent .date {
-              float: right;
-            }
-            
-            .sectionContent .separator {
-              height: 14px;
-            }
-            
-            .sectionLine {
-              border-style: dashed;
-              border-width: 1px;
-              border-color: #CFCFCF;
-              margin-top: 10px;
-              margin-bottom: 10px;
-            }
-            
-            .divider {
-              font-weight: bold;
-              margin-left: 5px;
-              margin-right: 5px;
-            }
-            
-            .summary {
-              margin-top: 6px;
-            }
-            
-            .skillBlock {
-              margin-bottom: 4px;
-            }
-            
-            .jobBlock {
-              page-break-inside: avoid;
-            }
-            
-            /* Media Queries */
-            @media only screen and (max-width: 40em) {
-              body {
-                margin: 0;
-                font-size: 14px;
-              }
-              #resume {
-                margin: 0 auto;
-                max-width: 600px;
-                padding: 0.5em 1em;
-                border: none;
-              }
-              .sectionContent {
-                width: 100%;
-              }
-              .sectionContent .date {
-                padding-right: 2em;
-              }
-              .sectionName {
-                width: auto;
-              }
-              .largeFont {
-                font-size: 20px;
-              }
-              .smallFont {
-                font-size: 14px;
-              }
-            }
-            
-            @media print {
-              #resume {
-                margin: 0 auto;
-                max-width: 600px;
-                padding: 0px 0px;
-                border: 0px;
-                background: #fff;
-                box-shadow: none;
-                -webkit-box-shadow: none;
-              }
-            
-              a {
-                color: black;
-              }
+            @media (max-width: 480px) {
+            	h1 {
+            		font-size: 26px;
+            	}
+            	.date {
+            		font-size: 14px;
+            		margin-bottom: 5px;
+            	}
+            	.strike-through span:first-child {
+            		margin-bottom: 7px;
+            	}
+            	.strike-through span {
+            		display: block;
+            	}	
+            	#header {
+            		margin-bottom: 10px;
+            		padding: 40px 0;
+            	}
+            	#actions {
+            		display: none;
+            	}
             }
         </style>
     </head>
     
     <body>
-        <div id='resume'>
-            <div id='nameBlock' class='largeFont'> <span class='name'>
-      Ce Gao,
-    </span>
- <span class='label'>Seeking a position as a summer intern in 2018</span>
+        <header id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-push-3">
+                        	<h1>
+						Ce Gao
+					</h1>
 
-            </div>
-            <div id='basicsBlock' class='smallFont'>
-                <div class='contactBlock'> <span class='email'>ce.gao@outlook.com</span>
- <span class='divider'>|</span>
+                        	<h2>
+						Seeking a position as a summer intern in 2018
+					</h2>
 
-                    <span
-                    class='phone'>1592 1592 066</span> <span class='divider'>|</span>
- <span class='address'>
-          Shanghai, China, 86
-        </span>
-
-                </div>
-                <div id='profilesBlock'> <span class='url'>
-              <a href='https://github.com/gaocegege'>https://github.com/gaocegege</a>
-            </span>
- <span class='divider'>|</span>
- <span class='url'>
-              <a href='http://gaocegege.com/Blog/'>http://gaocegege.com/Blog/</a>
-            </span>
- <span class='divider'>|</span>
- <span class='url'>
-              <a href='http://cn.linkedin.com/in/gaocegege'>http://cn.linkedin.com/in/gaocegege</a>
-            </span>
-
-                </div>
-            </div>
-            <div class='sectionLine'></div>
-            <div id='workBlock' class="sectionBlock">
-                <div class='sectionName'> <span>EXPERIENCE</span>
-
-                </div>
-                <div class='sectionContent'>
-                    <div class="jobBlock">
-                        <div class='blockHeader'> <span class='title'>
-	          Google Summer of Code 2017, Student Participant
-	        </span>
- <span class='date'>
-	          2017-05-2017-08
-	        </span>
-
-                        </div>
-                        <div><a href='https://summerofcode.withgoogle.com/'>https://summerofcode.withgoogle.com/</a>
-                        </div>
-                        <ul class='highlights'>
-                            <li>Implemented R mode for Processing with the sponsorship of Google</li>
-                        </ul>
-                        <div class='separator'></div>
-                    </div>
-                    <div class="jobBlock">
-                        <div class='blockHeader'> <span class='title'>
-	          Morgan Stanley, CIP Project Intern
-	        </span>
- <span class='date'>
-	          2017-02-2017-08
-	        </span>
-
-                        </div>
-                        <div><a href=''></a>
-                        </div>
-                        <ul class='highlights'>
-                            <li>Implemented scheduler logic similar to Kubernetes</li>
-                        </ul>
-                        <div class='separator'></div>
-                    </div>
-                    <div class="jobBlock">
-                        <div class='blockHeader'> <span class='title'>
-	          TouchPal, Data Engineer(Intern)
-	        </span>
- <span class='date'>
-	          2015-09-2015-09
-	        </span>
-
-                        </div>
-                        <div><a href=''></a>
-                        </div>
-                        <ul class='highlights'>
-                            <li>Migrated the web crawler code to the new architecture</li>
-                        </ul>
-                        <div class='separator'></div>
-                    </div>
-                    <div class="jobBlock">
-                        <div class='blockHeader'> <span class='title'>
-	          Alipay, Java R&amp;D Engineer(Intern)
-	        </span>
- <span class='date'>
-	          2015-07-2015-09
-	        </span>
-
-                        </div>
-                        <div><a href=''></a>
-                        </div>
-                        <ul class='highlights'>
-                            <li>Implemented some business logic and some logic about operation platform</li>
-                        </ul>
                     </div>
                 </div>
             </div>
-            <div class='sectionLine'></div>
-            <div id='publications'>
-                <div class='sectionName'> <span>PUBLICATIONS</span>
+        </header>
+        <div id="content" class="container">
+            <section id="contact" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Contact</h3>
 
-                </div>
-                <div class='sectionContent'>
-                    <div class='blockHeader'> <span class='title'>
-          Processing.R, Ce Gao
-        </span>
- <span class='date'>
-          <span class='releaseDate'>2017-08</span>
-</span>
-                    </div>
-                    <div class='website'> <a href='https://github.com/gaocegege/processing.r'>https://github.com/gaocegege/processing.r</a>
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">	<strong>Email</strong>
 
-                    </div>
-                    <ul class='highlights'>
-                        <li>Google Summer of code 2017 project, which implemented R mode for Processing,
-                            to allow users write Processing sketches in R. Got 70 stars in GitHub</li>
-                    </ul>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          maintainer, Ce Gao
-        </span>
- <span class='date'>
-          <span class='releaseDate'>2017-04</span>
-</span>
-                    </div>
-                    <div class='website'> <a href='https://github.com/gaocegege/maintainer'>https://github.com/gaocegege/maintainer</a>
+                            <div class="email">ce.gao@outlook.com</div>
+                        </div>
+                        <div class="col-sm-6">	<strong>Phone</strong>
 
-                    </div>
-                    <ul class='highlights'>
-                        <li>The tool to generate Authors and related documentation for GitHub repositories,
-                            got 120 stars in GitHub</li>
-                    </ul>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          cyclone, caicloud
-        </span>
- <span class='date'>
-          <span class='releaseDate'>2016-11</span>
-</span>
-                    </div>
-                    <div class='website'> <a href='https://github.com/caicloud/cyclone'>https://github.com/caicloud/cyclone</a>
+                            <div class="phone">1592 1592 066</div>
+                        </div>
+                        <div class="col-sm-6">	<strong>Website</strong>
 
-                    </div>
-                    <ul class='highlights'>
-                        <li>The continuous integration and continuous deployment platform, similiar
-                            to Jenkins, got 440 stars in GitHub</li>
-                    </ul>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          scrala, Ce Gao
-        </span>
- <span class='date'>
-          <span class='releaseDate'>2015-12</span>
-</span>
-                    </div>
-                    <div class='website'> <a href='http://gaocegege.com/scrala/'>http://gaocegege.com/scrala/</a>
+                            <div class="website">	<a href="http://gaocegege.com">http://gaocegege.com</a>
 
-                    </div>
-                    <ul class='highlights'>
-                        <li>The framework for writing spiders written in scala, got 70 stars in GitHub</li>
-                    </ul>
-                </div>
-            </div>
-            <div class='sectionLine'></div>
-            <div id='awards' class="sectionBlock">
-                <div class='sectionName'> <span>AWARDS</span>
-
-                </div>
-                <div class='sectionContent'>
-                    <div class='blockHeader'> <span class='title'>
-          13th National Post-Graduate Mathematic Contest in Modeling(NPGMCM), Second Prize
-        </span>
- <span class='date'>
-          <span class='date'>2016-12</span>
-</span>
-                    </div>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          7th China Students Service Outsourcing Innovation &amp; Entrepreneurship Competition, First Prize
-        </span>
- <span class='date'>
-          <span class='date'>2016-09</span>
-</span>
-                    </div>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          Interdisciplinary Contest In Modeling(ICM), Honorable Mention
-        </span>
- <span class='date'>
-          <span class='date'>2015-03</span>
-</span>
-                    </div>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          National Mathematical Contest in Modeling, First Prize in Shanghai Area
-        </span>
- <span class='date'>
-          <span class='date'>2014-11</span>
-</span>
-                    </div>
-                    <div class='separator'></div>
-                    <div class='blockHeader'> <span class='title'>
-          DaZhongDianPing Geek Challenge, Second Prize &amp; Outstanding Person
-        </span>
- <span class='date'>
-          <span class='date'>2014-07</span>
-</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class='sectionLine'></div>
-            <div id='education' class="sectionBlock">
-                <div class='sectionName'> <span>EDUCATION</span>
+            </section>
+            <section id="about" class="row">
+                <aside class="col-sm-3">
+                    	<h3>About</h3>
 
-                </div>
-                <div class='sectionContent'>
-                    <div class='educationBlock'> <span class='title'>
-          Shanghai Jiao Tong University
-        </span>
- <span class='date'>
-          2016-09-2019-03
-        </span>
+                </aside>
+                <div class="col-sm-9"></div>
+            </section>
+            <section id="profiles" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Profiles</h3>
 
-                        <div class=''>Master - Software Engineering</div>
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">	<strong class="network">
+						GitHub
+					</strong>
+
+                            <div class="username">
+                                <div class="url">	<a href="https://github.com/gaocegege">gaocegege</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">	<strong class="network">
+						Blog
+					</strong>
+
+                            <div class="username">
+                                <div class="url">	<a href="http://gaocegege.com/Blog/">gaocegege</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">	<strong class="network">
+						Linkedin
+					</strong>
+
+                            <div class="username">
+                                <div class="url">	<a href="http://cn.linkedin.com/in/gaocegege">gaocegege</a>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class='separator'></div>
-                    <div class='educationBlock'> <span class='title'>
-          Shanghai Jiao Tong University
-        </span>
- <span class='date'>
-          2012-09-2016-06
-        </span>
+                </div>
+            </section>
+            <section id="work" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Work</h3>
 
-                        <div class=''>Bachelor - Major in Software Engineering, Minor in Law</div>
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Google Summer of Code 2017</span>
+					<span class="date">
+						2017-05 — 2017-08
+					</span>
+				</h4>
+
+                            <div class="website pull-right">	<a href="https://summerofcode.withgoogle.com/">https://summerofcode.withgoogle.com/</a>
+
+                            </div>
+                            <div class="position">Student Participant</div>
+                            <div class="summary">
+                                <p>Implemented R mode for Processing with the sponsorship of Google</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Morgan Stanley</span>
+					<span class="date">
+						2017-02 — 2017-08
+					</span>
+				</h4>
+
+                            <div class="position">CIP Project Intern</div>
+                            <div class="summary">
+                                <p>Implemented scheduler logic similar to Kubernetes</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>TouchPal</span>
+					<span class="date">
+						2015-09 — 2015-09
+					</span>
+				</h4>
+
+                            <div class="position">Data Engineer(Intern)</div>
+                            <div class="summary">
+                                <p>Migrated the web crawler code to the new architecture</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Alipay</span>
+					<span class="date">
+						2015-07 — 2015-09
+					</span>
+				</h4>
+
+                            <div class="position">Java R&amp;D Engineer(Intern)</div>
+                            <div class="summary">
+                                <p>Implemented some business logic and some logic about operation platform</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class='sectionLine'></div>
-            <div id='interests' class="sectionBlock">
-                <div class='sectionName'> <span>INTERESTS</span>
+            </section>
+            <section id="education" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Education</h3>
 
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Shanghai Jiao Tong University</span>
+					<span class="date">
+						2016-09 — 2019-03
+					</span>
+				</h4>
+
+                            <div class="area">Software Engineering</div>
+                            <div class="studyType">Master</div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Shanghai Jiao Tong University</span>
+					<span class="date">
+						2012-09 — 2016-06
+					</span>
+				</h4>
+
+                            <div class="area">Major in Software Engineering, Minor in Law</div>
+                            <div class="studyType">Bachelor</div>
+                        </div>
+                    </div>
                 </div>
-                <div class='sectionContent'> <span class='name'>Programming</span>
-                    <!-- --><span class='keywords'> <em>[
-        Github<!--
-        -->, 
-        Scala<!--
-        -->, 
-        Blog<!--
-        -->, 
-        Hackathon<!--
-        -->, 
-        Crawler<!--
-        -->, 
-        Docker<!--
-        -->, 
-        Distributed Systems<!--
-        -->
-      ]</em></span>
-                    <!-- --><span>, </span>
- <span class='name'>Others</span>
-                    <!-- --><span class='keywords'> <em>[
-        Debate<!--
-        -->, 
-        Computer Game<!--
-        -->
-      ]</em></span>
-                    <!-- -->
+            </section>
+            <section id="awards" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Awards</h3>
+
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>13th National Post-Graduate Mathematic Contest in Modeling(NPGMCM)</span>
+				</h4>
+
+                            <div class="date pull-right">	<em>Awarded</em>
+2016-12</div>
+                            <div class="awarder">	<em>by</em>
+	<strong>Second Prize</strong>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>7th China Students Service Outsourcing Innovation &amp; Entrepreneurship Competition</span>
+				</h4>
+
+                            <div class="date pull-right">	<em>Awarded</em>
+2016-09</div>
+                            <div class="awarder">	<em>by</em>
+	<strong>First Prize</strong>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Interdisciplinary Contest In Modeling(ICM)</span>
+				</h4>
+
+                            <div class="date pull-right">	<em>Awarded</em>
+2015-03</div>
+                            <div class="awarder">	<em>by</em>
+	<strong>Honorable Mention</strong>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>National Mathematical Contest in Modeling</span>
+				</h4>
+
+                            <div class="date pull-right">	<em>Awarded</em>
+2014-11</div>
+                            <div class="awarder">	<em>by</em>
+	<strong>First Prize in Shanghai Area</strong>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>DaZhongDianPing Geek Challenge</span>
+				</h4>
+
+                            <div class="date pull-right">	<em>Awarded</em>
+2014-07</div>
+                            <div class="awarder">	<em>by</em>
+	<strong>Second Prize &amp; Outstanding Person</strong>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class='sectionLine'></div>
-            </div>
+            </section>
+            <section id="publications" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Publications</h3>
+
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>Processing.R</span>
+					<span class="date">
+						2017-08
+					</span>
+				</h4>
+
+                            <div class="website pull-right">	<a href="https://github.com/gaocegege/processing.r"></a>
+
+                            </div>
+                            <div class="publisher">	<em>Published by</em>
+	<strong>Ce Gao</strong>
+
+                            </div>
+                            <div class="summary">
+                                <p>Google Summer of code 2017 project, which implemented R mode for Processing,
+                                    to allow users write Processing sketches in R. Got 70 stars in GitHub</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>maintainer</span>
+					<span class="date">
+						2017-04
+					</span>
+				</h4>
+
+                            <div class="website pull-right">	<a href="https://github.com/gaocegege/maintainer"></a>
+
+                            </div>
+                            <div class="publisher">	<em>Published by</em>
+	<strong>Ce Gao</strong>
+
+                            </div>
+                            <div class="summary">
+                                <p>The tool to generate Authors and related documentation for GitHub repositories,
+                                    got 120 stars in GitHub</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>cyclone</span>
+					<span class="date">
+						2016-11
+					</span>
+				</h4>
+
+                            <div class="website pull-right">	<a href="https://github.com/caicloud/cyclone"></a>
+
+                            </div>
+                            <div class="publisher">	<em>Published by</em>
+	<strong>caicloud</strong>
+
+                            </div>
+                            <div class="summary">
+                                <p>The continuous integration and continuous deployment platform, similiar
+                                    to Jenkins, got 440 stars in GitHub</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            	<h4 class="strike-through">
+					<span>scrala</span>
+					<span class="date">
+						2015-12
+					</span>
+				</h4>
+
+                            <div class="website pull-right">	<a href="http://gaocegege.com/scrala/"></a>
+
+                            </div>
+                            <div class="publisher">	<em>Published by</em>
+	<strong>Ce Gao</strong>
+
+                            </div>
+                            <div class="summary">
+                                <p>The framework for writing spiders written in scala, got 70 stars in GitHub</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="interests" class="row">
+                <aside class="col-sm-3">
+                    	<h3>Interests</h3>
+
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="name">
+                                	<h4>Programming</h4>
+
+                            </div>
+                            <ul class="keywords">
+                                <li>Github</li>
+                                <li>Scala</li>
+                                <li>Blog</li>
+                                <li>Hackathon</li>
+                                <li>Crawler</li>
+                                <li>Docker</li>
+                                <li>Distributed Systems</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="name">
+                                	<h4>Others</h4>
+
+                            </div>
+                            <ul class="keywords">
+                                <li>Debate</li>
+                                <li>Computer Game</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </body>
 
 </html>
