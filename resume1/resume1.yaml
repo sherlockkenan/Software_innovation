@@ -1,0 +1,50 @@
+apiVersion: apps/v1beta2  
+kind: Deployment  
+metadata:  
+  name: demo-jar  
+  labels:  
+    app: demo-jar  
+spec:  
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:  
+    matchLabels:  
+      app: demo-jar 
+  template:  
+    metadata:  
+      labels:  
+        app: demo-jar  
+    spec:  
+      containers:  
+      - name: demo-jar
+        image: localhost:5000/springio/resume1:latest
+        ports:  
+        - containerPort: 30563
+          protocol: TCP  
+        livenessProbe:  
+          httpGet:  
+            path: /  
+            port: 30563  
+          initialDelaySeconds: 30  
+          timeoutSeconds: 30  
+        imagePullPolicy: Never  
+      # Comment the following tolerations if Dashboard must not be deployed on master  
+      tolerations:  
+      - key: node-role.kubernetes.io/master  
+        effect: NoSchedule  
+  
+---  
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: demo-jar
+  namespace: default
+  labels:  
+    app: demo-jar
+spec:  
+  ports:  
+    - port: 30563  
+      targetPort: 30563
+  selector:  
+    app: demo-jar 
+  type: NodePort  
