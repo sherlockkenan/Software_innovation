@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+</head>
+<h2>简历生成器</h2>
+<body>
+<form action="#" th:action="@{/resume}" th:object="${resumeinfo}" method="post">
+
+    <h3>选择模版</h3>
+    <select th:field="*{template}">
+        <option value="onepage">onepage</option>
+        <option value="class">class</option>
+        <option value="classy">classy</option>
+        <option value="flat">flat</option>
+        <option value="kendall">kendall</option>
+        <option value="modern">modern</option>
+        <option value="onepage-year">onepage-year</option>
+        <option value="paper">paper</option>
+        <option value="short">short</option>
+        <!--<option value="slick">slick</option>-->
+        <option value="spartan">spartan</option>
+        <option value="stackoverflow">stackoverflow</option>
+        <!--<option value="elegant">elegant</option>-->
+        <option value="eloquent">eloquent</option>
+        <option value="moon">moon</option>
+        <option value="developpez">developpez</option>
+        <option value="even">even</option>
+        <!--<option value="kards">kards</option>-->
+        <option value="orbit">orbit</option>
+        <option value="mantra">mantra</option>
+        <option value="curzy">curzy</option>
+        <!--<option value="a11y">a11y</option>-->
+        <!--<option value="lemonlabs">lemonlabs</option>-->
+    </select>
+
+    <h3>基本信息</h3>
+    <p>name: <input type="text" th:field="*{basicname}" value="Ce Gao"/></p>
+    <p>label: <input type="text" th:field="*{basiclabel}" value="Seeking a position as a summer intern in 2018"/></p>
+    <p>email: <input type="text" th:field="*{basicemail}" value="ce.gao@outlook.com"/></p>
+    <p>phone: <input type="text" th:field="*{basicphone}" value="1592 1592 066"/></p>
+    <p>address: <input type="text" th:field="*{basiclocationaddress}" value="800 Dongchuan RD. Minhang District"/></p>
+    <p>postalcode: <input type="text" th:field="*{basiclocationpostalcode}" value="200240"/></p>
+    <p>city: <input type="text" th:field="*{basiclocationcity}" value="Shanghai"/></p>
+    <p>countrycode: <input type="text" th:field="*{basiclocationcountrycode}" value="86"/></p>
+    <p>region: <input type="text" th:field="*{basiclocationregion}" value="China"/></p>
+
+    <h3>工作经历</h3>
+    <p>company: <input type="text" th:field="*{workcompany}" value="Google Summer of Code 2017"/></p>
+    <p>position: <input type="text" th:field="*{workposition}" value="Student Participant"/></p>
+    <p>website: <input type="text" th:field="*{workwebsite}" value="https://summerofcode.withgoogle.com/"/></p>
+    <p>startdate: <input type="text" th:field="*{workstartdate}" value="2017-05"/></p>
+    <p>enddate: <input type="text" th:field="*{workenddate}" value="2017-08"/></p>
+    <p>summary: <input type="text" th:field="*{worksummary}" value="Implemented R mode for Processing with the sponsorship of Google"/></p>
+
+    <h3>教育经历</h3>
+    <p>institution: <input type="text" th:field="*{educationinstitution}" value="Shanghai Jiao Tong University"/></p>
+    <p>area: <input type="text" th:field="*{educationarea}" value="Software Engineering"/></p>
+    <p>studytype: <input type="text" th:field="*{educationstudytype}" value="Master"/></p>
+    <p>startdate: <input type="text" th:field="*{educationstartdate}" value="2016-09"/></p>
+    <p>enddate: <input type="text" th:field="*{educationenddate}" value="2019-03"/></p>
+
+    <h3>获奖经历</h3>
+    <p>title: <input type="text" th:field="*{awardtitle}" value="13th National Post-Graduate Mathematic Contest in Modeling(NPGMCM)"/></p>
+    <p>date: <input type="text" th:field="*{awarddate}" value="2016-12"/></p>
+    <p>warder: <input type="text" th:field="*{awardwarder}" value="Second Prize"/></p>
+
+    <h3>作品</h3>
+    <p>name: <input type="text" th:field="*{publicationname}" value="scrala"/></p>
+    <p>publicsher: <input type="text" th:field="*{publicationpublicsher}" value="Ce Gao"/></p>
+    <p>releasedate: <input type="text" th:field="*{publicationreleasedate}" value="2015-12"/></p>
+    <p>website: <input type="text" th:field="*{publicationwebsite}" value="http://gaocegege.com/scrala/"/></p>
+    <p>summary: <input type="text" th:field="*{publicationsummary}" value="The framework for writing spiders written in scala, got 70 stars in GitHub"/></p>
+
+    <h3>兴趣</h3>
+    <p>name: <input type="text" th:field="*{interestname}" value="Programming"/></p>
+    <p>keyword1: <input type="text" th:field="*{interestkeyword1}" value="Scala"/></p>
+    <p>keyword2: <input type="text" th:field="*{interestkeyword2}" value="Docker"/></p>
+    <p>keyword3: <input type="text" th:field="*{interestkeyword3}" value="OS"/></p>
+
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>
