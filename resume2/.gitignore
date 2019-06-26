@@ -34,4 +34,6 @@ build/
 .DS_Store
 
 ### db ###
-db/
+db
+userdb
+resumedb

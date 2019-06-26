@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+</head>
+<h2>简历生成器</h2>
+<body>
+<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+
+    <h3>请登录/注册</h3>
+    <p>用户名: <input type="text" th:field="*{username}"/></p>
+    <p>密码: <input type="password" th:field="*{password}"/></p>
+
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>

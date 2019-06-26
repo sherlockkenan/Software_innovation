@@ -32,3 +32,8 @@ build/
 
 ### mac files ###
 .DS_Store
+
+### db ###
+db
+userdb
+resumedb

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 
 @Controller
 public class ResumeController {
@@ -94,7 +96,22 @@ public class ResumeController {
     }
 
     @RequestMapping("/")
-    public String login(Model model) {
+    public String main_entry(HttpSession session, Model model) {
+        if(session.getAttribute("user")==null)
+        {
+            System.out.println("mainentry: model no user");
+
+            model.addAttribute("user",new User());
+            return "login";
+        }
+        User user=(User)session.getAttribute("user");
+        if(user.getUsername().isEmpty())
+        {
+            System.out.println("mainentry: user name is empty");
+
+            model.addAttribute("user",new User());
+            return "login";
+        }
         String[] strs={"spartan",
 
                 "CeGao","Seeking a position as a summer intern in 2018","ce.gao@outlook.com","1592 1592 066",
@@ -114,6 +131,67 @@ public class ResumeController {
         ResumeInfo resumeinfo=new ResumeInfo(strs);
         model.addAttribute("resumeinfo",resumeinfo);
         return "index";
+    }
+
+    @RequestMapping("/login")
+    public String login(@ModelAttribute User user,HttpSession session) {
+        System.out.println("name: "+user.getUsername()+"  password: "+user.getPassword());
+
+        String filename="db";
+        try
+        {
+            File file=new File("userdb");
+            if(!file.exists()||!file.isFile())
+            {
+                file.createNewFile();
+                FileOutputStream outStream = new FileOutputStream(file);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outStream);
+                HashMap<String,String>map=new HashMap<String,String>();
+                map.put("root","root");
+                objectOutputStream.writeObject(map);
+                objectOutputStream.close();
+                outStream.close();
+            }
+            System.out.println("here1");
+            FileInputStream freader=new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(freader);
+            HashMap<String,String> map = new HashMap<String,String>();
+            map = (HashMap<String, String>) objectInputStream.readObject();
+            objectInputStream.close();
+            freader.close();
+            System.out.println("here2");
+
+            if(!map.containsKey(user.getUsername()))
+            {
+                if(user.getPassword().isEmpty())
+                {
+                    return "loginerror";
+                }
+                map.put(user.getUsername(),user.getPassword());
+
+                FileOutputStream outStream = new FileOutputStream(file);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outStream);
+                objectOutputStream.writeObject(map);
+                objectOutputStream.close();
+                outStream.close();
+
+                System.out.println("create new user");
+                session.setAttribute("user",user);
+                return "forward:/";
+            }
+            if(!user.getPassword().equals(map.get(user.getUsername())))
+            {
+                System.out.println("wrong number");
+                return "loginerror";
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("some exception happens");
+            return "loginerror";
+        }
+        System.out.println("some exception happens");
+        return "loginerror";
     }
 
     @RequestMapping(value="/resume", method= RequestMethod.POST)

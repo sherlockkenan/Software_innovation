@@ -22,7 +22,7 @@ public class ResumeController {
         //System.out.println(json);
         try
         {
-            String filedir="db/"+username;
+            String filedir="resumedb/"+username;
             String filename=username+".json";
             String resultname=username+".html";
 
