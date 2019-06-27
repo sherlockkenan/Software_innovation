@@ -44,7 +44,8 @@ metadata:
     app: resume2-jar
 spec:  
   ports:  
-    - port: 30564  
+    - nodePort: 30564
+      port: 30564  
       targetPort: 30564
   selector:  
     app: resume2-jar 
