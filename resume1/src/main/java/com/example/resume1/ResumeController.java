@@ -217,7 +217,7 @@ public class ResumeController {
         //构建HttpClient对象
         CloseableHttpClient client = HttpClients.createDefault();
         //构建POST请求
-        HttpPost httpPost = new HttpPost("http://localhost:8081/resume?"+"username="+resumeinfo.getBasicname()+"&template="+resumeinfo.getTemplate());
+        HttpPost httpPost = new HttpPost("http://resume2-jar:30564/resume?"+"username="+resumeinfo.getBasicname()+"&template="+resumeinfo.getTemplate());
         InputStream inputStream = null;
         CloseableHttpResponse response = null;
         //System.out.println("here2");
