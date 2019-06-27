@@ -152,23 +152,25 @@ public class ResumeController {
                 objectOutputStream.close();
                 outStream.close();
             }
-            System.out.println("here1");
+            //System.out.println("here1");
             FileInputStream freader=new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(freader);
             HashMap<String,String> map = new HashMap<String,String>();
             map = (HashMap<String, String>) objectInputStream.readObject();
             objectInputStream.close();
             freader.close();
-            System.out.println("here2");
+            //System.out.println("here2");
 
             if(!map.containsKey(user.getUsername()))
             {
+                //System.out.println("here2-1");
                 if(user.getPassword().isEmpty())
                 {
-                    System.out.println("here3");
+                    System.out.println("No password");
                     return "loginerror";
                 }
                 map.put(user.getUsername(),user.getPassword());
+                //System.out.println("here4");
 
                 FileOutputStream outStream = new FileOutputStream(file);
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outStream);
@@ -176,23 +178,24 @@ public class ResumeController {
                 objectOutputStream.close();
                 outStream.close();
 
-                System.out.println("create new user");
+                System.out.println("Create new user");
                 session.setAttribute("user",user);
                 return "forward:/";
             }
-            if(!user.getPassword().equals(map.get(user.getUsername())))
+            if(!user.getPassword().equals(map.get(user.getPassword())))
             {
-                System.out.println("wrong number");
+                System.out.println("Wrong Password");
                 return "loginerror";
             }
+            System.out.println("Successfully login");
+            session.setAttribute("user",user);
+            return "forward:/";
         }
         catch(Exception e)
         {
-            System.out.println("some exception happens");
+            System.out.println("Some exception happens");
             return "loginerror";
         }
-        System.out.println("some exception happens");
-        return "loginerror";
     }
 
     @RequestMapping(value="/resume", method= RequestMethod.POST)
