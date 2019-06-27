@@ -1,0 +1,52 @@
+apiVersion: apps/v1beta2  
+kind: Deployment  
+metadata:  
+  name: resume2-jar  
+  labels:  
+    app: resume2-jar  
+spec:  
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:  
+    matchLabels:  
+      app: resume2-jar 
+  template:  
+    metadata:  
+      labels:  
+        app: resume2-jar  
+    spec:  
+      containers:  
+      - name: resume2-jar
+        image: sherlockke/resume2:latest
+        ports:  
+        - containerPort: 30564
+          protocol: TCP  
+        livenessProbe:  
+          httpGet:  
+            path: /  
+            port: 30564  
+          initialDelaySeconds: 30  
+          timeoutSeconds: 30  
+        imagePullPolicy: IfNotPresent 
+     imagePullSecrets:
+      - name: regcred
+      # Comment the following tolerations if Dashboard must not be deployed on master  
+      tolerations:  
+      - key: node-role.kubernetes.io/master  
+        effect: NoSchedule  
+  
+---  
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: resume2-jar
+  namespace: default
+  labels:  
+    app: resume2-jar
+spec:  
+  ports:  
+    - port: 30564  
+      targetPort: 30564
+  selector:  
+    app: resume2-jar 
+  type: NodePort  
