@@ -1,22 +1,22 @@
 apiVersion: apps/v1beta2  
 kind: Deployment  
 metadata:  
-  name: demo-jar  
+  name: resume1-jar  
   labels:  
-    app: demo-jar  
+    app: resume1-jar  
 spec:  
   replicas: 1
   revisionHistoryLimit: 10
   selector:  
     matchLabels:  
-      app: demo-jar 
+      app: resume1-jar 
   template:  
     metadata:  
       labels:  
-        app: demo-jar  
+        app: resume1-jar  
     spec:  
       containers:  
-      - name: demo-jar
+      - name: resume1-jar
         image: sherlockke/resume1:latest
         ports:  
         - containerPort: 30563
@@ -39,14 +39,15 @@ spec:
 apiVersion: v1  
 kind: Service  
 metadata:  
-  name: demo-jar
+  name: resume1-jar
   namespace: default
   labels:  
-    app: demo-jar
+    app: resume1-jar
 spec:  
   ports:  
-    - port: 30563  
+    - nodePort: 30563
+      port: 30563  
       targetPort: 30563
   selector:  
-    app: demo-jar 
+    app: resume1-jar 
   type: NodePort  

@@ -28,13 +28,12 @@ spec:
           initialDelaySeconds: 30  
           timeoutSeconds: 30  
         imagePullPolicy: IfNotPresent 
-     imagePullSecrets:
+      imagePullSecrets:
       - name: regcred
       # Comment the following tolerations if Dashboard must not be deployed on master  
       tolerations:  
       - key: node-role.kubernetes.io/master  
         effect: NoSchedule  
-  
 ---  
 apiVersion: v1  
 kind: Service  
@@ -45,7 +44,8 @@ metadata:
     app: resume2-jar
 spec:  
   ports:  
-    - port: 30564  
+    - nodePort: 30564
+      port: 30564  
       targetPort: 30564
   selector:  
     app: resume2-jar 
