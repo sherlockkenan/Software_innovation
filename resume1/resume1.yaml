@@ -17,7 +17,7 @@ spec:
     spec:  
       containers:  
       - name: demo-jar
-        image: localhost:5000/springio/resume1:latest
+        image: sherlockke/resume1:latest
         ports:  
         - containerPort: 30563
           protocol: TCP  
@@ -27,7 +27,9 @@ spec:
             port: 30563  
           initialDelaySeconds: 30  
           timeoutSeconds: 30  
-        imagePullPolicy: Never  
+        imagePullPolicy: IfNotPresent  
+      imagePullSecrets:
+      - name: regcred
       # Comment the following tolerations if Dashboard must not be deployed on master  
       tolerations:  
       - key: node-role.kubernetes.io/master  
