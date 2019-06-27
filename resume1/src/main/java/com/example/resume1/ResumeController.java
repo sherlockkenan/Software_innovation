@@ -114,7 +114,7 @@ public class ResumeController {
         }
         String[] strs={"spartan",
 
-                "Docker","Seeking a position as a summer intern in 2018","ce.gao@outlook.com","1592 1592 066",
+                "Docker","Seeking a position as a summer intern in 2019","docker@outlook.com","54749110",
                 "800 Dongchuan RD. Minhang District","200240","Shanghai","86","China",
 
                 "Google Summer of Code 2017","Student Participant","https://summerofcode.withgoogle.com/","2017-05",
@@ -124,7 +124,7 @@ public class ResumeController {
 
                 "13th National Post-Graduate Mathematic Contest in Modeling(NPGMCM)","2016-12","Second Prize",
 
-                "scrala","Ce Gao","2015-12","http://gaocegege.com/scrala/","The framework for writing spiders written in scala, got 70 stars in GitHub",
+                "scrala","docker","2015-12","http://docker.com/scrala/","The framework for writing spiders written in scala, got 70 stars in GitHub",
 
                 "Programming","Scala","Docker","OS"
         };
