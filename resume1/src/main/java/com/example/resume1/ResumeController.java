@@ -165,6 +165,7 @@ public class ResumeController {
             {
                 if(user.getPassword().isEmpty())
                 {
+                    System.out.println("here3");
                     return "loginerror";
                 }
                 map.put(user.getUsername(),user.getPassword());

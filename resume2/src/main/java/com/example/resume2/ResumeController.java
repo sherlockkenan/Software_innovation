@@ -20,7 +20,18 @@ public class ResumeController {
         //System.out.println(username);
         //System.out.println(template);
         //System.out.println(json);
-        try
+        String result="<html lang=\"zh-CN\">\n" +
+                "<head>\n" +
+                "    <title>Error</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "resume2: succeed!!\n" +
+                "</body>\n" +
+                "</html>";
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_HTML)
+                .body(result.getBytes());
+        /*try
         {
             String filedir="resumedb/"+username;
             String filename=username+".json";
@@ -83,6 +94,6 @@ public class ResumeController {
             return ResponseEntity.ok()
                     .contentType(MediaType.TEXT_HTML)
                     .body(errormessage.getBytes());
-        }
+        }*/
     }
 }
