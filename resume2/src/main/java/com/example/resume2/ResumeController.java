@@ -49,6 +49,7 @@ public class ResumeController {
                 .body(result.getBytes());*/
         try
         {
+            System.out.println("Get new Request");
             String filedir="resumedb/"+username;
             String filename=username+".json";
             String resultname=username+".html";
@@ -83,7 +84,7 @@ public class ResumeController {
                         "    <title>Error</title>\n" +
                         "</head>\n" +
                         "<body>\n" +
-                        "shit happens!\n" +
+                        "Resume2: shit happens!\n" +
                         "</body>\n" +
                         "</html>";
                 return ResponseEntity.ok()
@@ -104,7 +105,7 @@ public class ResumeController {
                     "    <title>Error</title>\n" +
                     "</head>\n" +
                     "<body>\n" +
-                    "shit happens!\n" +
+                    "Resume2: shit happens!\n" +
                     "</body>\n" +
                     "</html>";
             return ResponseEntity.ok()
