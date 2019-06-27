@@ -27,7 +27,7 @@ spec:
             port: 30563  
           initialDelaySeconds: 30  
           timeoutSeconds: 30  
-        imagePullPolicy: IfNotPresent  
+        imagePullPolicy: Always  
       imagePullSecrets:
       - name: regcred
       # Comment the following tolerations if Dashboard must not be deployed on master  
