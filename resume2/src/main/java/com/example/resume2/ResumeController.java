@@ -12,6 +12,22 @@ import java.nio.file.Paths;
 @Controller
 public class ResumeController {
 
+    @RequestMapping("/")
+    @ResponseBody
+    public ResponseEntity<byte[]> main_entry() {
+        String result="<html lang=\"zh-CN\">\n" +
+                "<head>\n" +
+                "    <title>Yes</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "resume2: succeed!!\n" +
+                "</body>\n" +
+                "</html>";
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_HTML)
+                .body(result.getBytes());
+    }
+
     @RequestMapping(value="/resume", method= RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<byte[]> resume(@RequestParam(value = "username", required = false) String username,
@@ -22,7 +38,7 @@ public class ResumeController {
         //System.out.println(json);
         String result="<html lang=\"zh-CN\">\n" +
                 "<head>\n" +
-                "    <title>Error</title>\n" +
+                "    <title>Yes</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "resume2: succeed!!\n" +
