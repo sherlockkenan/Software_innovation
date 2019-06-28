@@ -182,7 +182,7 @@ public class ResumeController {
                 session.setAttribute("user",user);
                 return "forward:/";
             }
-            if(!user.getPassword().equals(map.get(user.getPassword())))
+            if(!user.getPassword().equals(map.get(user.getUsername())))
             {
                 System.out.println("Wrong Password");
                 return "loginerror";
